@@ -29,16 +29,19 @@ to ground a short list of improvement suggestions.
    pulled and reasoned over to produce a short list of concrete, trend-grounded
    suggestions - not generic advice.
 
-## Architecture
+## Sponsors: who does what
 
-| Step | What it does |
+| Sponsor | Role in the pipeline |
 |---|---|
-| **Variant generation** | An LLM (OpenAI-compatible API) turns the prompt + a content/style variation into a real, self-contained website. |
-| **Sandbox execution** | Each generated variant is written into its own isolated cloud sandbox, started for real, and exposed at a live, public preview URL. |
-| **Trend scraping** | Real, current search-engine results relevant to the prompt are scraped to ground the suggestion step in actual data, not the model's guesses. |
-| **Suggestion reasoning** | A second LLM call reasons over the scraped trend data to produce a short list of concrete, trend-grounded suggestions. |
-| **Persona scoring** | A hosted evaluation model reviews each live variant like a real visitor would and gives a score and a one-line verdict. |
-| **Ranking** | Persona scores are combined with a few deterministic checks (loads OK, load time, key elements present, mobile-friendly) into one ranked list with a clear winner. |
+| **[ai&](https://docs.aiand.com)** | Does two distinct jobs, both LLM calls against ai&'s OpenAI-compatible API: (1) generates every website variant from the prompt, and (2) separately reasons over the trend data Oxylabs scrapes to produce the improvement suggestions. |
+| **[Daytona](https://daytona.io)** | Runs every generated variant for real - each one is written into its own isolated cloud sandbox, started, and exposed at a live, public preview URL. This is the execution/safety layer: nothing is just rendered as a static preview. |
+| **[Oxylabs](https://oxylabs.io)** | Scrapes real, current search-engine results relevant to the prompt, so the suggestion step is grounded in actual trend data instead of the model's guesses. |
+| **[Doubleword](https://doubleword.ai)** | Hosts the persona-scoring model that reviews each live variant like a real visitor would, returning a score and a one-line verdict per variant. |
+
+
+Ranking itself (combining persona scores with deterministic checks - loads OK, load
+time, key elements present, mobile-friendly - into one ranked list) is our own logic,
+not a sponsor integration.
 
 ## Scope
 
